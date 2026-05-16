@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 export default function PortalAluno() {
-  const navigate = useNavigate("/Inicial");
+  const navigate = useNavigate();
 
   return (
     <div className=" bg-white flex flex-col">
@@ -13,43 +14,57 @@ export default function PortalAluno() {
             <h2 className="text-blue-600 font-bold mt-3 ml-3 text-2xl ">
               Portal do Aluno
             </h2>
-
             <h6 className="text-gray-500 ml-3 text-xs pb-3">LibrasCode</h6>
           </div>
-          <button
-            className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
-                            gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
+
+          {/* Items do menu  */}
+          {/* Botão ir para IDE Python */}
+          <Link
+            to="/aluno/ide"
+            className="w-full bg-blue-100 text-sm text-blue-600 
+            flex items-center gap-3 px-3 py-2 rounded-md font-bold 
+            hover:bg-blue-200 transition"
           >
             IDE Python
-          </button>
+          </Link>
 
-          <button
+          {/* Botao ir para aula ao vivo */}
+          <Link
+            to="/aluno/aula"
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
                             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
           >
             Aula ao Vivo
-          </button>
+          </Link>
 
-          <button
+          {/* Botao ir para trilha */}
+          <Link
+            to="/Aluno/trilha"
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
                             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
           >
             Trilha
-          </button>
+          </Link>
         </div>
 
+        {/* Botão de Sair */}
         <div className="p-3 border-t border-gray-200">
-          <button
-            onClick={() => navigate("/Inicial")}
-            className="w-full bg-red-100 text-sm text-blue-600 flex items-center 
-                            gap-3 px-3 py-2 rounded-md font-bold hover:bg-red-200 transition"
+          <Link
+            to="/Inicial"
+            className="w-full bg-red-100 text-sm text-blue-600 
+            flex items-center gap-3 px-3 py-2 rounded-md 
+            font-bold hover:bg-red-200 transition"
           >
-            ⍈ Sair
-          </button>
+            <LogOut size={18} />
+            Sair
+          </Link>
         </div>
+
       </aside>
       {/* Conteúdo Principal */}
-      
+      <main className=" flex-1 bg-slate-50 p-6 overflow-y-auto ">
+        <Outlet />
+      </main>
     </div>
   );
 }
