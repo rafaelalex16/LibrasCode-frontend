@@ -38,7 +38,9 @@ export function PaginaInicial() {
               Portal do Aluno
             </button>
             {/* Botão aluno*/}
-            <button className="border font-semibold border-gray-300 px-8 py-4 rounded-2xl flex items-center gap-2 hover:bg-gray-100 transition">
+            <button
+            onClick={() => navigate("/professor")}
+             className="border font-semibold border-gray-300 px-8 py-4 rounded-2xl flex items-center gap-2 hover:bg-gray-100 transition">
               <BookOpen size={20} />
               Área do Professor
             </button>

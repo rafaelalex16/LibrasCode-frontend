@@ -7,6 +7,9 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter, Navigate } from 
 import { IDE } from './paginas/IDE';
 import { Trilha } from './paginas/Trilha';
 import { AulaAoVivo } from './paginas/AulaAoVivo';
+import { PortalProfessor } from './paginas/PortalProfessor';
+import { GravarAulaProfessor } from './paginas/GravarAulaProfessor';
+import { ProgressoTurma } from './paginas/ProgressoTurma';
 
 function App() {
     return <BrowserRouter>
@@ -25,7 +28,16 @@ function App() {
          </Route>
 
          <Route path="*" element={<Navigate to="/home" replace />}/>
-       </Routes>
+
+         {/* Redirecionamento PortalProfessor */}
+          <Route path="/professor" element={<PortalProfessor />}>
+
+            <Route index element={<Navigate to="aovivo" replace />}/>
+
+            <Route path="aovivo" element={<GravarAulaProfessor/>}/>
+            <Route path="progresso" element={<ProgressoTurma/>}/>
+         </Route>
+         </Routes>
     </BrowserRouter>
    
 }
