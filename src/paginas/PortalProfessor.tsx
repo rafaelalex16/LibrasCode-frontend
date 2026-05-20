@@ -30,7 +30,7 @@ export function PortalProfessor() {
             flex items-center gap-3 px-3 py-2 rounded-md font-bold 
             hover:bg-blue-200 transition"
           >
-            <Monitor size={20} />
+            <Monitor className="text-blue-600" size={20} />
             Modo Aula
           </Link>
 
@@ -40,7 +40,7 @@ export function PortalProfessor() {
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
           >
-            <Users size={20} />
+            <Users className="text-blue-600" size={20} />
             Progresso da turma
           </Link>
         </div>

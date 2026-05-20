@@ -1,4 +1,4 @@
-import { LogOut } from "lucide-react";
+import { Book, Code2, LogOut, Route, Video } from "lucide-react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 export default function PortalAluno() {
@@ -24,7 +24,7 @@ export default function PortalAluno() {
             className="w-full bg-blue-100 text-sm text-blue-600 
             flex items-center gap-3 px-3 py-2 rounded-md font-bold 
             hover:bg-blue-200 transition"
-          >
+          > <Code2 className="text-blue-600" size={20}/>
             IDE Python
           </Link>
 
@@ -33,7 +33,7 @@ export default function PortalAluno() {
             to="/aluno/aula"
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
-          >
+          > <Video className="text-blue-600" size={20}/>
             Aula ao Vivo
           </Link>
 
@@ -42,7 +42,7 @@ export default function PortalAluno() {
             to="/Aluno/trilha"
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
                             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
-          >
+          > <Route className="text-blue-600" size={20}/>
             Trilha
           </Link>
 
@@ -50,7 +50,7 @@ export default function PortalAluno() {
             to="/Aluno/glossario"
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
                             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
-          >
+          > <Book className="text-blue-600" size={20}/>
             Glossário
           </Link>
         </div>
