@@ -45,6 +45,14 @@ export default function PortalAluno() {
           >
             Trilha
           </Link>
+
+          <Link
+            to="/Aluno/glossario"
+            className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
+                            gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
+          >
+            Glossário
+          </Link>
         </div>
 
         {/* Botão de Sair */}
@@ -87,7 +95,7 @@ export default function PortalAluno() {
               </h3>
             </div>
           </div>
-           <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
+          <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
             <h3>if</h3>
             <div className="rounded-lg bg-blue-100 p-2">
               <h3 className="text-blue-600 text-xs font-bold text-center">
@@ -95,11 +103,7 @@ export default function PortalAluno() {
               </h3>
             </div>
           </div>
-
-
         </div>
-       
-        
       </aside>
     </div>
   );

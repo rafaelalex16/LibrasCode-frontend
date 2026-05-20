@@ -3,7 +3,7 @@ import { MicOff, Send, Trash2 } from "lucide-react";
 export function GravarAulaProfessor() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
-      {/* cabeçalho */}
+      {/* Cabeçalho */}
       <div className="bg-slate-50">
         <h1 className="font-bold text-lg ml-12">Modo Aula</h1>
         <h3 className="text-gray-500 font-semiboldm mb-5 ml-12">
@@ -12,7 +12,7 @@ export function GravarAulaProfessor() {
         </h3>
       </div>
 
-      {/* conteudo 1 (MICROFONE) */}
+      {/* Conteudo 1 (MICROFONE) */}
       <div className="w-full h-[40%] bg-white border border-gray-200 gap-2 items-center mb-12 flex flex-col justify-center rounded-lg ">
         <div className="w-20 h-20 flex items-center justify-center rounded-full bg-red-600 ">
           <MicOff className="text-white" size={30} />
@@ -34,7 +34,7 @@ export function GravarAulaProfessor() {
           </h4>
         </div>
 
-        {/* conteudo 2 (transcrição da aula escrita)*/}
+        {/* Conteudo 2 (transcrição da aula escrita)*/}
         <div className="mt-5 ml-10 mr-10 bg-slate-50 flex flex-col items-start border border-gray-100 shadow-md rounded-lg">
           <div className="text-gray-700 text-bold text-sm-2 mt-3 mb-3 ml-3">
             Bom dia, turma! Hoje vamos aprender variáveis em Python.
@@ -47,7 +47,7 @@ export function GravarAulaProfessor() {
           </div>
         </div>
 
-        {/* escrita manual */}
+        {/* Escrita manual */}
         <div className="gap-2 flex items-center justify-between">
           <div className="w-screen mt-10 ml-10 mb-4 bg-white flex items-center justify-between  border border-gray-100 shadow-md rounded-lg">
             <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-3">

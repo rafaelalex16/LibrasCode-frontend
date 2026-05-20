@@ -14,8 +14,6 @@ export function PaginaInicial() {
           <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center mb-6 shadow-sm">
             <Code2 className="text-white" size={30} />
           </div>
-
-          {/* <img src="logo.inicio.png" alt="Logo" className="w-12 2xl" /> */}
           {/* Logo */}
 
           <h1 className="text-6xl text-black font-extrabold text-slate-800 mb-4">
@@ -34,13 +32,15 @@ export function PaginaInicial() {
               onClick={() => navigate("/aluno")}
               className="bg-blue-600 font-semibold text-white hover:bg-blue-500 transition text-white px-8 py-4 rounded-2xl flex items-center gap-2 shadow-lg"
             >
-            <GraduationCap size={20} />
+              <GraduationCap size={20} />
               Portal do Aluno
             </button>
             {/* Botão aluno*/}
+
             <button
-            onClick={() => navigate("/professor")}
-             className="border font-semibold border-gray-300 px-8 py-4 rounded-2xl flex items-center gap-2 hover:bg-gray-100 transition">
+              onClick={() => navigate("/professor")}
+              className="border font-semibold border-gray-300 px-8 py-4 rounded-2xl flex items-center gap-2 hover:bg-gray-100 transition"
+            >
               <BookOpen size={20} />
               Área do Professor
             </button>

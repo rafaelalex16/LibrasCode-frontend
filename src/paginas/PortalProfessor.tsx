@@ -1,7 +1,7 @@
 import { Code2, LogOut, Monitor, Users } from "lucide-react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-export  function PortalProfessor() {
+export function PortalProfessor() {
   const navigate = useNavigate();
 
   return (
@@ -16,10 +16,10 @@ export  function PortalProfessor() {
             </h2>
 
             <div className="flex ">
-            <h6 className="text-gray-500 flex flex-row gap-1 text-xs">
-                <Code2 className="text-blue-500 " size={15}/>     
-                      LibrasCode</h6>
-                </div>
+              <h6 className="text-gray-500 flex flex-row gap-1 text-xs">
+                LibrasCode
+              </h6>
+            </div>
           </div>
 
           {/* Items do menu (PROFESSOR) */}
@@ -30,8 +30,8 @@ export  function PortalProfessor() {
             flex items-center gap-3 px-3 py-2 rounded-md font-bold 
             hover:bg-blue-200 transition"
           >
-           <Monitor size={20}/>
-           Modo Aula
+            <Monitor size={20} />
+            Modo Aula
           </Link>
 
           {/* Botao ir para aula ao vivo */}
@@ -40,11 +40,9 @@ export  function PortalProfessor() {
             className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
             gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
           >
-            <Users size={20}/>
+            <Users size={20} />
             Progresso da turma
           </Link>
-
-         
         </div>
 
         {/* Botão de Sair */}
@@ -70,7 +68,7 @@ export  function PortalProfessor() {
 
         {/* Palavras detectadas */}
         <div className="h-[50%] flex flex-col ">
-          {/* cabeçalho */}
+          {/* Cabeçalho */}
           <div className="flex flex-row justify-between mb-5">
             <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
             <div className="bg-blue-100  rounded-full py-1 px-2">
@@ -87,7 +85,7 @@ export  function PortalProfessor() {
               </h3>
             </div>
           </div>
-           <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
+          <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
             <h3>if</h3>
             <div className="rounded-lg bg-blue-100 p-2">
               <h3 className="text-blue-600 text-xs font-bold text-center">
@@ -95,11 +93,7 @@ export  function PortalProfessor() {
               </h3>
             </div>
           </div>
-            
-
         </div>
-       
-        
       </aside>
     </div>
   );

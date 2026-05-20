@@ -3,8 +3,7 @@ import { Dot, DotIcon, Volume2 } from "lucide-react";
 export function AulaAoVivo() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-100">
-      
-      {/* cabeçalho */}
+      {/* Cabeçalho */}
       <div
         className="flex items-center justify-between 
         p-4 bg-white border-b border-b-gray-100"
@@ -25,23 +24,22 @@ export function AulaAoVivo() {
         </div>
       </div>
 
-        {/* conteúdo */}
-      <div className="h-screen flex flex-col 
+      {/* Conteúdo */}
+      <div
+        className="h-screen flex flex-col 
         p-4 bg-white border-b border-b-gray-100"
       >
-          
-          <h2 className="overflow-hidden flex mb-4 font-bold text-sm-2 items-center gap-2  ">
-            <Volume2 size={15}/>  
-            Transcrição em Tempo Real
-          </h2>
+        <h2 className="overflow-hidden flex mb-4 font-bold text-sm-2 items-center gap-2  ">
+          <Volume2 size={15} />
+          Transcrição em Tempo Real
+        </h2>
 
-          {/* Conteudo  a ser transcrito */}
-          <div className=" min-h-[220px] text-start">
-            <p className="text-sm text-start text-slate-700 leading-relaxed">
-                Aguardando o professor iniciar...
-            </p>
-         </div>
-
+        {/* Conteúdo  a ser transcrito */}
+        <div className=" min-h-[220px] text-start">
+          <p className="text-sm text-start text-slate-700 leading-relaxed">
+            Aguardando o professor iniciar...
+          </p>
+        </div>
       </div>
     </div>
   );

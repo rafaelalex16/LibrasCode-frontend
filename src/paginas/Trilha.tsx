@@ -21,7 +21,7 @@ export function Trilha() {
   return (
     <div className="px-4">
       <div className="flex flex-col py-2 my-4 px-4 gap-4 bg-white border border-gray-100 shadow-md rounded-lg">
-        {/*progresso total */}
+        {/*Progresso total */}
         <div className="flex items-center justify-between">
           <div className="text-gray-700 flex text-start font-bold text-sm2 ">
             Progresso Total
@@ -31,11 +31,11 @@ export function Trilha() {
           </div>
         </div>
 
-        {/* barra de progresso */}
+        {/* Barra de progresso */}
         <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
           <div className="h-full w-[60%] bg-blue-600 rounded-full"></div>
         </div>
-
+        {/* Quantidade modúlos feitos */}
         <div className="mb-2 mt-2 text-gray-400 font-bold text-sm">
           2 de 5 módulos concluídos
         </div>

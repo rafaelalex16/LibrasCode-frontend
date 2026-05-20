@@ -3,13 +3,13 @@ import { Award, Clock, TrendingUp, Users } from "lucide-react";
 export function ProgressoTurma() {
   return (
     <div className="h-screen flex flex-col gap-2 overflow-hidden overflow-y-auto bg-slate-50">
-      {/* cabeçalho */}
+      {/* Cabeçalho */}
       <h1 className="text-black font-bold text-lg ">Progresso da Turma</h1>
       <h3 className="text-gray-400 font-semibold">
         Acompanhe o desempenho de cada aluno nas trilhas de aprendizado
       </h3>
 
-      {/* cards */}
+      {/* Cards */}
       <div className="flex justify-between">
         <div className="flex items-center gap-1 justify-between">
           <div className="w-40 h-32 bg-white border border-gray-200 gap-2 items-start mb-12 flex flex-col justify-between rounded-lg">
@@ -71,7 +71,7 @@ export function ProgressoTurma() {
         </div>
       </div>
 
-      {/* desempenho individual */}
+      {/* Desempenho individual */}
       <div className="w-full h-[60%] bg-white border border-gray-200 gap-2 mb-12 flex flex-col rounded-lg ">
         <div className="border-b border-gray-200 p-4 flex items-center justify-between">
           <h3 className="flex font-bold text-start ">Desempenho Individual</h3>
@@ -79,23 +79,23 @@ export function ProgressoTurma() {
 
         <div className="w-full h-[25%] flex flex-col bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
           <div className="w-full flex items-start gap-3 p-4">
-            {/* círculo DR */}
+            {/* Círculo DR */}
             <div className="w-10 h-10 rounded-full bg-purple-700 flex items-center justify-center text-white font-bold text-sm shrink-0">
               DR
             </div>
 
-            {/* conteúdo */}
+            {/* Conteúdo */}
             <div className="flex-1">
-              {/* linha de cima */}
+              {/* Linha de cima */}
               <div className="flex justify-between items-start mb-1">
-                {/* aluno */}
+                {/* Aluno */}
                 <div>
                   <h3 className="font-bold text-sm text-gray-900 leading-none">
                     Diana Rocha
                   </h3>
                 </div>
 
-                {/* direita */}
+                {/* Direita */}
                 <div className="flex items-center gap-3">
                   <span className="text-green-600 font-semibold text-xs">
                     Avançado
@@ -105,38 +105,38 @@ export function ProgressoTurma() {
                 </div>
               </div>
 
-              {/* barra / porcentagem */}
+              {/* Barra / porcentagem */}
               <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div className="h-full w-full bg-green-600 rounded-full"></div>
               </div>
 
-              {/* descricao */}
+              {/* Descricao */}
               <p className="text-xs text-gray-400 mt-1">
                 5 de 5 módulos concluídos
               </p>
             </div>
           </div>
 
-          {/* segundo aluno */}
+          {/* Segundo aluno */}
           <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
-              {/* círculo DR */}
+              {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
                 AS
               </div>
 
-              {/* conteúdo */}
+              {/* Conteúdo */}
               <div className="flex-1">
-                {/* linha de cima */}
+                {/* Linha de cima */}
                 <div className="flex justify-between items-start mb-1">
-                  {/* aluno */}
+                  {/* Aluno */}
                   <div>
                     <h3 className="font-bold text-sm text-gray-900 leading-none">
                       Ana Silva
                     </h3>
                   </div>
 
-                  {/* direita */}
+                  {/* Direita */}
                   <div className="flex items-center gap-3">
                     <span className="text-blue-600 font-semibold text-xs">
                       Regular
@@ -146,12 +146,12 @@ export function ProgressoTurma() {
                   </div>
                 </div>
 
-                {/* barra / porcentagem */}
+                {/* Barra / porcentagem */}
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full w-[60%] bg-blue-600 rounded-full"></div>
                 </div>
 
-                {/* descricao */}
+                {/* Descricao */}
                 <p className="text-xs text-gray-400 mt-1">
                   3 de 5 módulos concluídos
                 </p>
@@ -159,26 +159,26 @@ export function ProgressoTurma() {
             </div>
           </div>
 
-          {/* terceiro aluno */}
+          {/* Terceiro aluno */}
           <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
-              {/* círculo DR */}
+              {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
                 BS
               </div>
 
-              {/* conteúdo */}
+              {/* Conteúdo */}
               <div className="flex-1">
-                {/* linha de cima */}
+                {/* Linha de cima */}
                 <div className="flex justify-between items-start mb-1">
-                  {/* aluno */}
+                  {/* Aluno */}
                   <div>
                     <h3 className="font-bold text-sm text-gray-900 leading-none">
                       Bruno Souza
                     </h3>
                   </div>
 
-                  {/* direita */}
+                  {/* Direita */}
                   <div className="flex items-center gap-3">
                     <span className="text-orange-400 font-semibold text-xs">
                       Em progresso
@@ -188,12 +188,12 @@ export function ProgressoTurma() {
                   </div>
                 </div>
 
-                {/* barra / porcentagem */}
+                {/* Barra / porcentagem */}
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full w-[40%] bg-orange-400 rounded-full"></div>
                 </div>
 
-                {/* descricao */}
+                {/* Descricao */}
                 <p className="text-xs text-gray-400 mt-1">
                   2 de 5 módulos concluídos
                 </p>
@@ -201,26 +201,26 @@ export function ProgressoTurma() {
             </div>
           </div>
 
-          {/* quarto aluno */}
+          {/* Quarto aluno */}
           <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
-              {/* círculo DR */}
+              {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-purple-700 flex items-center justify-center text-white font-bold text-sm shrink-0">
                 CL
               </div>
 
-              {/* conteúdo */}
+              {/* Conteúdo */}
               <div className="flex-1">
-                {/* linha de cima */}
+                {/* Linha de cima */}
                 <div className="flex justify-between items-start mb-1">
-                  {/* aluno */}
+                  {/* Aluno */}
                   <div>
                     <h3 className="font-bold text-sm text-gray-900 leading-none">
                       Carlos Lima
                     </h3>
                   </div>
 
-                  {/* direita */}
+                  {/* Direita */}
                   <div className="flex items-center gap-3">
                     <span className="text-red-600 font-semibold text-xs">
                       Atenção
@@ -230,12 +230,12 @@ export function ProgressoTurma() {
                   </div>
                 </div>
 
-                {/* barra / porcentagem */}
+                {/* Barra / porcentagem */}
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full w-[0%] bg-red-600 rounded-full"></div>
                 </div>
 
-                {/* descricao */}
+                {/* Descricao */}
                 <p className="text-xs text-gray-400 mt-1">
                   0 de 5 módulos concluídos
                 </p>
