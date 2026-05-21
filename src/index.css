@@ -7,3 +7,40 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+/* Estilização do VLibras */
+
+/* Wrapper principal */
+[vw]{
+    position: fixed !important;
+    top: 10rem !important;
+    right: 8px !important;
+    width: 350px !important;
+    height: 280px !important;
+}
+
+/* Botão de acesso */
+[vw-access-button] {
+  display: none !important;
+}
+
+/* Wrapper para o plugin */
+[vw-plugin-wrapper] {
+  position: absolute !important;
+  width: 320px !important;
+  height: 410px !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+  bottom: auto !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background: white !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Wrapper para o topo do plugin */
+.vw-plugin-top-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}

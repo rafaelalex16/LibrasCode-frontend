@@ -75,11 +75,11 @@ export default function PortalAluno() {
         <Outlet />
       </main>
 
-      <aside className="h-screen px-5 border border-gray-200 bg-white  flex flex-col w-80  justify-between">
+      <aside className="h-screen px-5 border border-gray-200 bg-white  flex flex-col w-96  justify-between">
         <div></div>
 
         {/* Palavras detectadas */}
-        <div className="h-[50%] flex flex-col overflow-y-auto ">
+        <div className="h-[30%] flex flex-col overflow-y-auto ">
           {/* cabeçalho */}
           <div className=" flex flex-row justify-between mb-5">
             <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
