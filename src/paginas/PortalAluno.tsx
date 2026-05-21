@@ -1,8 +1,9 @@
 import { Book, Code2, LogOut, Route, Video } from "lucide-react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import { dicionarioPythonSOV } from "../dicionarioMocado/dicionarioMocado";
 
 export default function PortalAluno() {
-  const navigate = useNavigate();
+  const sinaisDetectados = Object.entries(dicionarioPythonSOV);
 
   return (
     <div className="bg-slate-100 flex">
@@ -68,18 +69,19 @@ export default function PortalAluno() {
           </Link>
         </div>
       </aside>
+
       {/* Conteúdo Principal */}
-      <main className=" flex-1 bg-slate-50 p-6 overflow-y-auto ">
+      <main className="flex-1 bg-slate-50 p-6 overflow-y-auto ">
         <Outlet />
       </main>
 
-      <aside className=" px-5 border border-gray-200 bg-white  flex flex-col w-80  justify-between">
+      <aside className="h-screen px-5 border border-gray-200 bg-white  flex flex-col w-80  justify-between">
         <div></div>
 
         {/* Palavras detectadas */}
-        <div className="h-[50%] flex flex-col ">
+        <div className="h-[50%] flex flex-col overflow-y-auto ">
           {/* cabeçalho */}
-          <div className="flex flex-row justify-between mb-5">
+          <div className=" flex flex-row justify-between mb-5">
             <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
             <div className="bg-blue-100  rounded-full py-1 px-2">
               <p>2</p>
@@ -87,22 +89,19 @@ export default function PortalAluno() {
           </div>
 
           {/* Lista de items */}
-          <div className="flex flex-row mb-2  justify-between border border-gray-150 rounded-lg p-2">
-            <h3>if</h3>
-            <div className="rounded-lg bg-blue-100 p-2">
-              <h3 className="text-blue-600 text-xs font-bold text-center">
-                CONDIÇÃO TESTAR:SE SIM
-              </h3>
+          {sinaisDetectados.map(([termo, descricao]) => (
+            <div
+              key={termo}
+              className="flex flex-row mb-2 justify-between border border-gray-150 rounded-lg p-2"
+            >
+              <h3 className="font-semibold">{termo}</h3>
+              <div className="rounded-lg bg-blue-100 p-2 max-w-[60%]">
+                <h3 className="text-blue-600 text-xs font-bold text-center">
+                  {descricao}
+                </h3>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
-            <h3>if</h3>
-            <div className="rounded-lg bg-blue-100 p-2">
-              <h3 className="text-blue-600 text-xs font-bold text-center">
-                CONDIÇÃO TESTAR:SE SIM
-              </h3>
-            </div>
-          </div>
+          ))}
         </div>
       </aside>
     </div>

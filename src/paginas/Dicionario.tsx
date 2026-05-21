@@ -1,5 +1,8 @@
 import { BookOpen, Search } from "lucide-react";
 
+// Essa tela tela está mocada (simulada) somente para mostrar como seria, e futuramente pretendemos
+// torna-la real, conectando-a a um banco de dados.
+
 export function Dicionario() {
   return (
     <div className="h-screen flex flex-col overflow-y-auto overflow-hidden bg-slate-100">
