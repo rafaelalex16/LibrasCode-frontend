@@ -1,6 +1,20 @@
 import { Dot, DotIcon, Volume2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function AulaAoVivo() {
+
+  const [transcricao, setTranscricao] = useState("");
+
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:8003/librasCodeWebsocket");
+
+    socket.onmessage = (evento) => {
+      setTranscricao(evento.data);
+    };
+
+    return () => socket.close();
+  }, []);
+  
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-100">
       {/* Cabeçalho */}
@@ -37,7 +51,8 @@ export function AulaAoVivo() {
         {/* Conteúdo  a ser transcrito */}
         <div className=" min-h-[220px] text-start">
           <p className="text-sm text-start text-slate-700 leading-relaxed">
-            Aguardando o professor iniciar...
+            {transcricao.length==0 ? "Aguardando o professor iniciar..." : transcricao}
+           
           </p>
         </div>
       </div>
