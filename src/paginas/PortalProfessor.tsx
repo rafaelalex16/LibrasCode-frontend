@@ -11,12 +11,12 @@ export function PortalProfessor() {
         <div className="p-3 space-y-4 flex-col items-start ">
           {/* Cabeçalho */}
           <div className="flex flex-col border-1 border-b border-gray-200">
-            <h2 className="text-blue-600 font-bold mt-3 ml-3 mb-3 text-2xl ">
+            <h2 className="text-blue-600 font-bold mt-3 ml-3  text-2xl ">
               Área do Professor
             </h2>
 
             <div className="flex ">
-              <h6 className="text-gray-500 flex flex-row gap-1 text-xs">
+              <h6 className="text-gray-500 flex flex-row gap-1 ml-3 mb-3 text-xs">
                 LibrasCode
               </h6>
             </div>
@@ -63,37 +63,10 @@ export function PortalProfessor() {
         <Outlet />
       </main>
 
-      <aside className=" px-5 border border-gray-200 bg-white  flex flex-col w-80  justify-between">
+      <aside className=" px-5 border border-gray-200 bg-white  flex flex-col w-96 justify-between">
         <div></div>
 
-        {/* Palavras detectadas */}
-        <div className="h-[50%] flex flex-col ">
-          {/* Cabeçalho */}
-          <div className="flex flex-row justify-between mb-5">
-            <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
-            <div className="bg-blue-100  rounded-full py-1 px-2">
-              <p>2</p>
-            </div>
-          </div>
-
-          {/* Lista de items */}
-          <div className="flex flex-row mb-2  justify-between border border-gray-150 rounded-lg p-2">
-            <h3>if</h3>
-            <div className="rounded-lg bg-blue-100 p-2">
-              <h3 className="text-blue-600 text-xs font-bold text-center">
-                CONDIÇÃO TESTAR:SE SIM
-              </h3>
-            </div>
-          </div>
-          <div className="flex flex-row  justify-between border border-gray-150 rounded-lg p-2">
-            <h3>if</h3>
-            <div className="rounded-lg bg-blue-100 p-2">
-              <h3 className="text-blue-600 text-xs font-bold text-center">
-                CONDIÇÃO TESTAR:SE SIM
-              </h3>
-            </div>
-          </div>
-        </div>
+       
       </aside>
     </div>
   );

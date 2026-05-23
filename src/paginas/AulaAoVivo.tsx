@@ -20,7 +20,7 @@ export function AulaAoVivo() {
              p-4 font-semibold"
         >
           <DotIcon size={35} />
-          Professor transmitindo...
+          Professor iniciando...
         </div>
       </div>
 

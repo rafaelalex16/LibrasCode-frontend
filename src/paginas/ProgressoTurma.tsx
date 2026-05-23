@@ -44,7 +44,7 @@ export function ProgressoTurma() {
           <div className="w-40 h-32 bg-white border border-gray-200 gap-2 items-start mb-12 flex flex-col justify-between rounded-lg">
             <div className="w-8 h-8 mt-2 bg-yellow-100 flex text-start justify-start rounded-lg ml-2">
               <Award
-                className="text-orange-600 mt-1 ml-1 mb-1 mr-1"
+                className="text-yellow-600 mt-1 ml-1 mb-1 mr-1"
                 size={20}
               />
             </div>
@@ -72,12 +72,12 @@ export function ProgressoTurma() {
       </div>
 
       {/* Desempenho individual */}
-      <div className="w-full h-[60%] bg-white border border-gray-200 gap-2 mb-12 flex flex-col rounded-lg ">
+      <div className="w-full h-[40%] bg-white border border-gray-200 gap-2 mb-12 flex flex-col rounded-lg ">
         <div className="border-b border-gray-200 p-4 flex items-center justify-between">
           <h3 className="flex font-bold text-start ">Desempenho Individual</h3>
         </div>
 
-        <div className="w-full h-[25%] flex flex-col bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
+        <div className="w-full flex flex-col bg-white border-b border-gray-200 gap-2 mb-4 rounded-lg ">
           <div className="w-full flex items-start gap-3 p-4">
             {/* Círculo DR */}
             <div className="w-10 h-10 rounded-full bg-purple-700 flex items-center justify-center text-white font-bold text-sm shrink-0">
@@ -118,7 +118,7 @@ export function ProgressoTurma() {
           </div>
 
           {/* Segundo aluno */}
-          <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
+          <div className="w-full h-[35%] bg-white border border-gray-200 gap-3 mb-1 rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
               {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
@@ -160,7 +160,7 @@ export function ProgressoTurma() {
           </div>
 
           {/* Terceiro aluno */}
-          <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
+          <div className="w-full h-[20%] bg-white border-b border-gray-200 gap-2 mb-2 rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
               {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
@@ -202,7 +202,7 @@ export function ProgressoTurma() {
           </div>
 
           {/* Quarto aluno */}
-          <div className="w-full h-[25%] bg-white border-b border-gray-200 gap-2 mb-12 flex rounded-lg ">
+          <div className="w-full h-[20%] bg-white border-b border-gray-200 gap-2 mb-12 rounded-lg ">
             <div className="w-full flex items-start gap-3 p-4">
               {/* Círculo DR */}
               <div className="w-10 h-10 rounded-full bg-purple-700 flex items-center justify-center text-white font-bold text-sm shrink-0">

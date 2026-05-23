@@ -1,89 +1,76 @@
 import { BookOpen, Search } from "lucide-react";
+import { useState } from "react"
 
 // Essa tela tela está mocada (simulada) somente para mostrar como seria, e futuramente pretendemos
 // torna-la real, conectando-a a um banco de dados.
 
 export function Dicionario() {
+  const [busca, setBusca] = useState("")
+
+  const sinaisLibras = {
+    variable: "MEMÓRIA NOME TER, DADO DENTRO MUDAR PODE.",
+    string: "TEXTO ASPAS DENTRO, LETRA NÚMERO JUNTO.",
+    integer: "NÚMERO INTEIRO, VÍRGULA NÃO-TER.",
+    float: "NÚMERO PONTO TER, VÍRGULA TER.",
+    boolean: "RESPOSTA DUAS: VERDADEIRO OU FALSO.",
+    list: "GRUPO ITENS, ORDEM TER, MUDAR ACEITAR.",
+    tuple: "GRUPO ITENS, MUDAR NÃO-ACEITAR, FIXO.",
+    dict: "GRUPO CHAVE VALOR, JUNTO GUARDAR.",
+  }
+
+  const filtrados = Object.entries(sinaisLibras).filter(([palavra]) =>
+    palavra.toLowerCase().includes(busca.toLowerCase())
+  )
+
   return (
-    <div className="h-screen flex flex-col overflow-y-auto overflow-hidden bg-slate-100">
+    <div className="h-screen overflow-y-auto bg-slate-100">
       {/* Cabeçalho */}
-      <div
-        className="flex flex-row items-center justify-between 
-        p-3 bg-white border-b border-b-gray-100"
-      >
-        <h1 className="font-semibold">Dicionário Libras</h1>
-        <h4 className="text-xs font-bold text-gray-500">
-          5 termos encontrados
+      <div className="flex items-center justify-between p-4 bg-white border-b">
+        <h1 className="font-semibold text-lg">Dicionário Libras</h1>
+
+        <h4 className="text-sm font-bold text-gray-500">
+          {filtrados.length} termos encontrados
         </h4>
       </div>
-      {/* Barra de pesquisa */}
-      <div className="flex items-center justify-center">
-        <div className="w-screen mt-5 ml-2 mr-2 mb-4 bg-white flex flex-row items-center justify-between border border-gray-100 shadow-md rounded-lg">
-          <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-3">
-            Pesquisar termo...
-          </div>
+
+      {/* Pesquisa */}
+      <div className="p-4">
+        <div className="bg-white rounded-xl border shadow-sm flex items-center px-4 py-3">
+          <Search size={18} className="text-gray-400" />
+
+          <input
+            type="text"
+            placeholder="Pesquisar termo..."
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            className="w-full ml-3 outline-none bg-transparent"
+          />
         </div>
       </div>
-      {/* Termos */}
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 mt-5 flex items-center justify-between">
-        <h3 className="flex font-bold gap-2 text-start text-sm ">
-          <BookOpen className="mt-1" size={15} />
-          Variable
-        </h3>
-      </div>
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 flex items-center justify-between">
-        <h4 className="text-gray-500 text-sm">
-          MEMÓRIA NOME TER, DADO DENTRO MUDAR PODE.
-        </h4>
-      </div>
 
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 mt-5 flex items-center justify-between">
-        <h3 className="flex font-bold gap-2 text-start text-sm ">
-          <BookOpen className="mt-1" size={15} />
-          String
-        </h3>
-      </div>
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 flex items-center justify-between">
-        <h4 className="text-gray-500 text-sm">
-          TEXTO ASPAS DENTRO, LETRA NÚMERO JUNTO.
-        </h4>
-      </div>
+      {/* Cards */}
+      <div className="px-4 pb-5 flex flex-col gap-5">
+        {filtrados.map(([palavra, sinal]) => (
+          <div
+            key={palavra}
+            className="bg-white rounded-2xl border overflow-hidden"
+          >
+            {/* Topo */}
+            <div className="flex items-center gap-2 p-3 border-b">
+              <BookOpen size={18} className="text-purple-600" />
 
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 mt-5 flex items-center justify-between">
-        <h3 className="flex font-bold gap-2 text-start text-sm ">
-          <BookOpen className="mt-1" size={15} />
-          Integer
-        </h3>
-      </div>
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 flex items-center justify-between">
-        <h4 className="text-gray-500 text-sm">
-          NÚMERO INTEIRO, VÍRGULA NÃO-TER.
-        </h4>
-      </div>
+              <h2 className="font-bold text-2sm capitalize">
+                {palavra}
+              </h2>
+            </div>
 
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 mt-5 flex items-center justify-between">
-        <h3 className="flex font-bold gap-2 text-start text-sm ">
-          <BookOpen className="mt-1" size={15} />
-          Float
-        </h3>
-      </div>
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 flex items-center justify-between">
-        <h4 className="text-gray-500 text-sm">
-          NÚMERO PONTO TER, VÍRGULA TER.
-        </h4>
-      </div>
-
-      <div className="border-b border-gray-200 bg-white p-2 rounded mt-5 mr-2 ml-2  flex items-center justify-between">
-        <h3 className="flex font-bold gap-2 text-start text-sm ">
-          <BookOpen className="mt-1" size={15} />
-          Boolean
-        </h3>
-      </div>
-      <div className="border-b border-gray-200 bg-white p-2 rounded mr-2 ml-2 flex items-center justify-between">
-        <h4 className="text-gray-500 text-sm">
-          RESPOSTA DUAS:VERDADEIRO OU FALSO.
-        </h4>
+            {/* Conteúdo */}
+            <div className="p-3 text-gray-600 font-medium">
+              {sinal}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  );
+  )
 }
