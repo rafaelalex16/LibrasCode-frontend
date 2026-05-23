@@ -1,6 +1,69 @@
 import { MicOff, Send, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
 
 export function GravarAulaProfessor() {
+  const [gravando,setGravando]= useState(false);
+  const [texto,setTexto]= useState("");
+  const [reconhecimento,setReconhecimento]= useState<any>(null);  
+
+  useEffect(()=>{
+    //criar conexão com o servidor/backend
+    const websocket = new WebSocket("ws://localhost:8003/librasCodeWebsocket");
+
+    // iniciando a api de reconhecimento de voz
+    const ReconhecimentoDeFala =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      // Verifica se o navegador suporta
+    if (!ReconhecimentoDeFala) {
+      alert("Seu navegador não suporta reconhecimento de voz");
+      return;
+    }
+
+    //criando reconhecimento de voz 
+    const fala= new ReconhecimentoDeFala() 
+
+    // Define idioma e comportamento
+    fala.lang = "pt-BR";
+    fala.continuous = true;
+    fala.interimResults = true;
+
+    // Executa quando detectar fala
+    fala.onresult = (evento: any) => {
+      let textoCompleto = "";
+
+      // junta todas as palavras formando frases prontas
+      for (let i = 0; i < evento.results.length; i++) {
+        textoCompleto += evento.results[i][0].transcript;
+      }
+
+      // Atualiza texto na tela
+      setTexto(textoCompleto);
+
+      // Envia texto para o servidor
+      websocket.send(textoCompleto);
+    };
+
+
+    // Guarda reconhecimento para usar depois
+    setReconhecimento(fala);
+
+    // Fecha conexões ao sair da tela
+    return () => {
+      websocket.close();
+      fala.stop();
+    };
+
+  },[])
+  
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
       {/* Cabeçalho */}
@@ -14,11 +77,29 @@ export function GravarAulaProfessor() {
 
       {/* Conteudo 1 (MICROFONE) */}
       <div className="w-full h-[40%] bg-white border border-gray-200 gap-2 items-center mb-12 flex flex-col justify-center rounded-lg ">
-        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-red-600 ">
+        <button onClick={()=> {
+          if (!reconhecimento) return;
+
+          if (gravando===true) {
+            reconhecimento.stop();
+            setGravando(false);
+          } else {
+            reconhecimento.start();
+            setGravando(true);
+          }
+
+        }} >
+        <div
+        style={{backgroundColor: gravando===true ? "red" : "blue"}} 
+        className="w-20 h-20 flex items-center justify-center rounded-full bg-red-600 ">
           <MicOff className="text-white" size={30} />
         </div>
-        <h3 className="font-bold text-red-600 ">
-          Gravando — clique para parar
+        </button>
+        <h3 
+        style={{color: gravando===true  ? "red" : "blue" }}
+        className="font-bold">
+          {gravando===true  ? "Gravando — clique para parar " : "Clique para gravar"}
+          
         </h3>
       </div>
 
