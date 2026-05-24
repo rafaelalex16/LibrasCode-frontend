@@ -116,22 +116,16 @@ export function GravarAulaProfessor() {
         </div>
 
         {/* Conteudo 2 (transcrição da aula escrita)*/}
-        <div className="mt-5 ml-10 mr-10 bg-slate-50 flex flex-col items-start border border-gray-100 shadow-md rounded-lg">
-          <div className="text-gray-700 text-bold text-sm-2 mt-3 mb-3 ml-3">
-            Bom dia, turma! Hoje vamos aprender variáveis em Python.
+        <div className="w-screen h-[60%] bg-white flex flex-col items-start rounded-lg overflow-y-auto">
+          <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-8 mr-8">
+            A transcrição da aula aparecerá aqui...
           </div>
-        </div>
-
-        <div className="mt-2 ml-10 mr-10 bg-blue-200 flex flex-col items-start border border-gray-100 shadow-md rounded-lg">
-          <div className="text-blue-700 text-bold text-sm-2 mt-3 mb-3 ml-3">
-            Uma variável é como uma caixa que guarda um valor na mémo
           </div>
-        </div>
 
         {/* Escrita manual */}
         <div className="gap-2 flex items-center justify-between">
-          <div className="w-screen mt-10 ml-10 mb-4 bg-white flex items-center justify-between  border border-gray-100 shadow-md rounded-lg">
-            <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-3">
+          <div className="w-screen mt-10 ml-7 mb-4 bg-white flex items-center justify-between  border border-gray-100 shadow-md rounded-lg">
+            <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-2 mr-8">
               Adicionar anotação manualmente...
             </div>
           </div>

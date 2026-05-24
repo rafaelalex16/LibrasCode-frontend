@@ -1,6 +1,6 @@
 import { Book, Code2, LogOut, Route, Video } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
-import { dicionarioPythonSOV } from "../dicionarioMocado/dicionarioMocado";
+import { dicionarioPythonSOV } from "../../dicionarioMocado/dicionarioMocado";
 
 export default function PortalAluno() {
   const sinaisDetectados = Object.entries(dicionarioPythonSOV);

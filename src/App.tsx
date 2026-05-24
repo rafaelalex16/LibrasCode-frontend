@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { PaginaInicial } from "./paginas/PaginaInicial";
-import PortalAluno from "./paginas/PortalAluno";
+import PortalAluno from "./paginas/alunos/PortalAluno";
 
 import {
   BrowserRouter as Router,
@@ -10,13 +10,13 @@ import {
   BrowserRouter,
   Navigate,
 } from "react-router-dom";
-import { IDE } from "./paginas/IDE";
-import { Trilha } from "./paginas/Trilha";
-import { AulaAoVivo } from "./paginas/AulaAoVivo";
-import { PortalProfessor } from "./paginas/PortalProfessor";
-import { GravarAulaProfessor } from "./paginas/GravarAulaProfessor";
-import { ProgressoTurma } from "./paginas/ProgressoTurma";
-import { Dicionario } from "./paginas/Dicionario";
+import { IDE } from "./paginas/alunos/IDE";
+import { Trilha } from "./paginas/alunos/Trilha";
+import { AulaAoVivo } from "./paginas/alunos/AulaAoVivo";
+import { PortalProfessor } from "./paginas/professor/PortalProfessor";
+import { GravarAulaProfessor } from "./paginas/professor/GravarAulaProfessor";
+import { ProgressoTurma } from "./paginas/professor/ProgressoTurma";
+import { Dicionario } from "./paginas/alunos/Dicionario";
 
 function App() {
   return (
