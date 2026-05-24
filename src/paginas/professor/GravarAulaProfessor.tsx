@@ -109,16 +109,18 @@ export function GravarAulaProfessor() {
       >
         <div className="border-b border-gray-200 p-4 flex items-center justify-between">
           <h3 className="flex font-bold text-start ">Transcrição da Aula</h3>
-          <h4 className="font-semibold text-xs text-gray-500 flex flex-row gap-1 ">
-            <Trash2 className="text-gray-500" size={15} />
-            Limpar
-          </h4>
+          <button onClick={()=> setTexto("")}>
+            <h4 className="font-semibold text-xs text-gray-500 flex flex-row gap-1 ">
+              <Trash2 className="text-gray-500" size={15} />
+              Limpar
+            </h4>
+          </button>
         </div>
 
         {/* Conteudo 2 (transcrição da aula escrita)*/}
         <div className="w-screen h-[60%] bg-white flex flex-col items-start rounded-lg overflow-y-auto">
           <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-8 mr-8">
-            A transcrição da aula aparecerá aqui...
+            {texto}
           </div>
           </div>
 
