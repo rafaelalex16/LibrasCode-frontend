@@ -50,7 +50,7 @@ export function PaginaInicial() {
       </div>
 
       {/* Direito */}
-      <div className="w-1/2 flex items-center justify-end">
+      <div className="w-1/2 h-full flex items-center justify-end">
         <img
           src="imagem.inicio.jpeg"
           alt="Imagem de início"

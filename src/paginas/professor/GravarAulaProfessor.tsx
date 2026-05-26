@@ -1,4 +1,4 @@
-import { MicOff, Send, Trash2 } from "lucide-react";
+import { Mic, MicOff, Send, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 declare global {
@@ -92,7 +92,7 @@ export function GravarAulaProfessor() {
         <div
         style={{backgroundColor: gravando===true ? "red" : "blue"}} 
         className="w-20 h-20 flex items-center justify-center rounded-full bg-red-600 ">
-          <MicOff className="text-white" size={30} />
+          <Mic className="text-white" size={30} />
         </div>
         </button>
         <h3 
@@ -118,8 +118,8 @@ export function GravarAulaProfessor() {
         </div>
 
         {/* Conteudo 2 (transcrição da aula escrita)*/}
-        <div className="w-screen h-[60%] bg-white flex flex-col items-start rounded-lg overflow-y-auto">
-          <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-8 mr-8">
+        <div className="w-[100%] h-[60%] bg-white flex flex-col items-start rounded-lg overflow-y-auto">
+          <div className="text-gray-400 text-bold text-sm-2 mt-3 mb-3 ml-8 mr-2">
             {texto}
           </div>
           </div>
