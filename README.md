@@ -21,6 +21,9 @@ Plataforma inclusiva para ensino de programação com suporte em Libras. Este é
 
 
 ## 💻 Como Rodar
+
+Clone o repositório e siga os passos abaixo. 
+
 1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado.
 2. No diretório do projeto, instale as dependências: `npm install`
 3. Inicie o servidor de desenvolvimento: `npm run dev`
