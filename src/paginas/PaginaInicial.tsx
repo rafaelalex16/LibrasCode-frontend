@@ -54,7 +54,7 @@ export function PaginaInicial() {
         <img
           src="imagem.inicio.jpeg"
           alt="Imagem de início"
-          className="w-[300px] h-auto"
+          className=" h-[100%]"
         />
       </div>
       {/* Imagem de início */}
