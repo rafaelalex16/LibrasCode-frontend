@@ -1,5 +1,6 @@
 import { BookOpen, Search } from "lucide-react";
 import { useState } from "react"
+import { dicionarioPythonSOV } from "../../dicionarioMocado/dicionarioMocado";
 
 // Essa tela tela está mocada (simulada) somente para mostrar como seria, e futuramente pretendemos
 // torna-la real, conectando-a a um banco de dados.
@@ -7,18 +8,9 @@ import { useState } from "react"
 export function Dicionario() {
   const [busca, setBusca] = useState("")
 
-  const sinaisLibras = {
-    variable: "MEMÓRIA NOME TER, DADO DENTRO MUDAR PODE.",
-    string: "TEXTO ASPAS DENTRO, LETRA NÚMERO JUNTO.",
-    integer: "NÚMERO INTEIRO, VÍRGULA NÃO-TER.",
-    float: "NÚMERO PONTO TER, VÍRGULA TER.",
-    boolean: "RESPOSTA DUAS: VERDADEIRO OU FALSO.",
-    list: "GRUPO ITENS, ORDEM TER, MUDAR ACEITAR.",
-    tuple: "GRUPO ITENS, MUDAR NÃO-ACEITAR, FIXO.",
-    dict: "GRUPO CHAVE VALOR, JUNTO GUARDAR.",
-  }
+  
 
-  const filtrados = Object.entries(sinaisLibras).filter(([palavra]) =>
+  const filtrados = Object.entries(dicionarioPythonSOV).filter(([palavra]) =>
     palavra.toLowerCase().includes(busca.toLowerCase())
   )
 

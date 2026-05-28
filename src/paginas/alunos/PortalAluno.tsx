@@ -84,7 +84,7 @@ export default function PortalAluno() {
           <div className=" flex flex-row justify-between mb-5">
             <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
             <div className="bg-blue-100  rounded-full py-1 px-2">
-              <p>2</p>
+              <p>{sinaisDetectados.length}</p>
             </div>
           </div>
 
