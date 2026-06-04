@@ -1,4 +1,4 @@
-import { Mic, MicOff, Send, Trash2 } from "lucide-react";
+import { Mic, Send, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 declare global {

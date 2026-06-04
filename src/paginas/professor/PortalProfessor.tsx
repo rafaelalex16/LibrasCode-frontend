@@ -1,8 +1,7 @@
-import { Code2, LogOut, Monitor, Users } from "lucide-react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { LogOut, Monitor, Users } from "lucide-react";
+import { Link, Outlet } from "react-router-dom";
 
 export function PortalProfessor() {
-  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-100 flex">

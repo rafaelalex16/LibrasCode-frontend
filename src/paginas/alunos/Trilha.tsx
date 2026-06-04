@@ -1,4 +1,3 @@
-import { Backpack } from "lucide-react";
 
 export function Trilha() {
   const ConteudoTrilha = [

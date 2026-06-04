@@ -1,10 +1,8 @@
-import { useState } from "react";
 import "./App.css";
 import { PaginaInicial } from "./paginas/PaginaInicial";
 import PortalAluno from "./paginas/alunos/PortalAluno";
 
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   BrowserRouter,

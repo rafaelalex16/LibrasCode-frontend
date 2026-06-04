@@ -1,4 +1,4 @@
-import { Dot, DotIcon, Volume2 } from "lucide-react";
+import { DotIcon, Volume2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function AulaAoVivo() {
