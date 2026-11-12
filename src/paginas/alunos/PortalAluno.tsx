@@ -1,11 +1,16 @@
 import { Book, Code2, LogOut, Route, Video } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
-import { dicionarioPythonSOV } from "../../dicionarioMocado/dicionarioMocado";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { AulaAoVivoProvider } from "../../aulaAoVivo/AulaAoVivoProvider";
+import { SinaisDetectados } from "../../aulaAoVivo/SinaisDetectados";
+import { LimiteDeErro } from "../../componentes/LimiteDeErro";
+import { EspacoAvatar } from "../../vlibras/EspacoAvatar";
 
 export default function PortalAluno() {
-  const sinaisDetectados = Object.entries(dicionarioPythonSOV);
+  const { pathname } = useLocation();
 
   return (
+    // O provider mantém a aula ao vivo conectada em todas as telas do aluno
+    <AulaAoVivoProvider>
     <div className="bg-slate-100 flex">
       <aside className="w-64 h-screen  bg-white border border-l  border-gray-200 flex flex-col justify-between">
         {/* Menu de Navegação Estudante */}
@@ -72,38 +77,19 @@ export default function PortalAluno() {
 
       {/* Conteúdo Principal */}
       <main className="flex-1 bg-slate-50 p-6 overflow-y-auto ">
-        <Outlet />
+        <LimiteDeErro key={pathname}>
+          <Outlet />
+        </LimiteDeErro>
       </main>
 
-      <aside className="h-screen px-5 border border-gray-200 bg-white  flex flex-col w-96  justify-between">
-        <div></div>
+      <aside className="h-screen px-5 border border-gray-200 bg-white  flex flex-col w-96 shrink-0 justify-between">
+        {/* Avatar VLibras encaixado acima dos sinais detectados */}
+        <EspacoAvatar />
 
-        {/* Palavras detectadas */}
-        <div className="h-[30%] flex flex-col overflow-y-auto ">
-          {/* cabeçalho */}
-          <div className=" flex flex-row justify-between mb-5">
-            <h3 className="font-bold text-sm text-start ">Sinais Detectados</h3>
-            <div className="bg-blue-100  rounded-full py-1 px-2">
-              <p>{sinaisDetectados.length}</p>
-            </div>
-          </div>
-
-          {/* Lista de items */}
-          {sinaisDetectados.map(([termo, descricao]) => (
-            <div
-              key={termo}
-              className="flex flex-row mb-2 justify-between border border-gray-150 rounded-lg p-2"
-            >
-              <h3 className="font-semibold">{termo}</h3>
-              <div className="rounded-lg bg-blue-100 p-2 max-w-[60%]">
-                <h3 className="text-blue-600 text-xs font-bold text-center">
-                  {descricao}
-                </h3>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Palavras detectadas na aula ao vivo */}
+        <SinaisDetectados />
       </aside>
     </div>
+    </AulaAoVivoProvider>
   );
 }

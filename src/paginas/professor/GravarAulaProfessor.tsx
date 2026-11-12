@@ -1,5 +1,6 @@
 import { Mic, Send, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { URL_WEBSOCKET } from "../../config";
 
 declare global {
   interface Window {
@@ -15,7 +16,7 @@ export function GravarAulaProfessor() {
 
   useEffect(()=>{
     //criar conexão com o servidor/backend
-    const websocket = new WebSocket("ws://localhost:8003/librasCodeWebsocket");
+    const websocket = new WebSocket(URL_WEBSOCKET);
 
     // iniciando a api de reconhecimento de voz
     const ReconhecimentoDeFala =
@@ -47,8 +48,15 @@ export function GravarAulaProfessor() {
       // Atualiza texto na tela
       setTexto(textoCompleto);
 
-      // Envia texto para o servidor
-      websocket.send(textoCompleto);
+      // Envia ao servidor só os trechos novos: "parcial" enquanto o professor fala, "final" quando a frase termina
+      if (websocket.readyState !== WebSocket.OPEN) return;
+      for (let i = evento.resultIndex; i < evento.results.length; i++) {
+        const resultado = evento.results[i];
+        websocket.send(JSON.stringify({
+          tipo: resultado.isFinal ? "final" : "parcial",
+          texto: resultado[0].transcript.trim(),
+        }));
+      }
     };
 
 
