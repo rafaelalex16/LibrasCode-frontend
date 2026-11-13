@@ -1,7 +1,18 @@
-import { LogOut, Monitor, Users } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { GraduationCap, LogOut, Monitor, UserRound, Users } from "lucide-react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/contextoAuth";
+import { LOGIN_ATIVO } from "../../config";
+import { LimiteDeErro } from "../../componentes/LimiteDeErro";
 
 export function PortalProfessor() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { perfil, sair } = useAuth();
+
+  const sairDaConta = async () => {
+    if (LOGIN_ATIVO) await sair();
+    navigate("/home", { replace: true });
+  };
 
   return (
     <div className="bg-slate-100 flex">
@@ -16,7 +27,7 @@ export function PortalProfessor() {
 
             <div className="flex ">
               <h6 className="text-gray-500 flex flex-row gap-1 ml-3 mb-3 text-xs">
-                LibrasCode
+                {perfil?.nome ?? "LibrasCode"}
               </h6>
             </div>
           </div>
@@ -42,24 +53,48 @@ export function PortalProfessor() {
             <Users className="text-blue-600" size={20} />
             Progresso da turma
           </Link>
+
+          {LOGIN_ATIVO && (
+          <>
+          <Link
+            to="/professor/turmas"
+            className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
+            gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
+          >
+            <GraduationCap className="text-blue-600" size={20} />
+            Minhas turmas
+          </Link>
+
+          <Link
+            to="/professor/conta"
+            className="w-full bg-blue-100 text-sm text-blue-600 flex items-center 
+            gap-3 px-3 py-2 rounded-md font-bold hover:bg-blue-200 transition"
+          >
+            <UserRound className="text-blue-600" size={20} />
+            Minha conta
+          </Link>
+          </>
+          )}
         </div>
 
         {/* Botão de Sair */}
         <div className="p-3 border-t border-gray-200">
-          <Link
-            to="/Inicial"
+          <button
+            onClick={() => void sairDaConta()}
             className="w-full bg-red-100 text-sm text-blue-600 
             flex items-center gap-3 px-3 py-2 rounded-md 
             font-bold hover:bg-red-200 transition"
           >
             <LogOut size={18} />
             Sair
-          </Link>
+          </button>
         </div>
       </aside>
       {/* Conteúdo Principal */}
       <main className=" flex-1 bg-slate-50 p-6 overflow-y-auto ">
-        <Outlet />
+        <LimiteDeErro key={pathname}>
+          <Outlet />
+        </LimiteDeErro>
       </main>
 
       <aside className=" px-5 border border-gray-200 bg-white  flex flex-col w-96 justify-between">

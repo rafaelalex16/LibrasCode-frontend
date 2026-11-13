@@ -1,15 +1,17 @@
 import { BookOpen, Hand, Search, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { normalizar } from "../../glossario/detectarTermos";
-import { categorias, glossario, textoParaSinalizar, type Categoria } from "../../glossario/glossario";
+import { useGlossario } from "../../glossario/carregarGlossario";
+import { textoParaSinalizar, type Categoria } from "../../glossario/glossario";
 import { sinalizar } from "../../vlibras/vlibras";
 
-// Os termos ainda vêm de um arquivo local (src/glossario/glossario.ts);
-// futuramente pretendemos conectá-los a um banco de dados.
+// Os termos vêm da tabela "glossario" do Supabase (com a cópia embutida como reserva).
 
 export function Dicionario() {
   const [busca, setBusca] = useState("");
   const [categoria, setCategoria] = useState<Categoria | null>(null);
+  const glossario = useGlossario();
+  const categorias = [...new Set(glossario.map((t) => t.categoria))];
 
   const termoBuscado = normalizar(busca);
   const filtrados = glossario.filter((termo) => {

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import type { TermoGlossario } from "../glossario/glossario";
 
-export type StatusConexao = "conectando" | "conectado" | "desconectado";
+export type StatusConexao = "semTurma" | "conectando" | "conectado" | "desconectado" | "negado";
 
 export interface MensagemAula {
   id: string;

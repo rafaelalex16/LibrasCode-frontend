@@ -18,6 +18,8 @@ Plataforma inclusiva para ensino de programação com suporte em Libras. Este é
 * Tailwind CSS
 * Lucide React
 * Monaco Editor
+* Supabase (login e banco de dados)
+* Pyodide (Python no navegador) e VLibras (avatar em Libras)
 
 
 ## 💻 Como Rodar
@@ -26,7 +28,12 @@ Clone o repositório e siga os passos abaixo.
 
 1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado.
 2. No diretório do projeto, instale as dependências: `npm install`
-3. Inicie o servidor de desenvolvimento: `npm run dev`
+3. Copie `.env.example` para `.env` e preencha `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` (Supabase > Project Settings > API). O banco é criado com as migrações do repositório LibrasCode-backend (`supabase/migrations`).
+   `VITE_LOGIN_ATIVO=false` (padrão) deixa os portais abertos sem cadastro; com `true` ficam ativos o login, as turmas, o histórico no banco e "Minha conta" (LGPD).
+4. Inicie o servidor de desenvolvimento: `npm run dev`
+5. Para a aula ao vivo, rode também o LibrasCode-backend na porta 8003.
+
+O site pode ser instalado como aplicativo (PWA) a partir do build de produção (`npm run build`).
 
 ## 🏗 Arquitetura do Projeto
 O projeto foi estruturado para ser modular e escalável, separando claramente as responsabilidades entre os perfis de usuário:
@@ -34,7 +41,9 @@ O projeto foi estruturado para ser modular e escalável, separando claramente as
 * **`/src/paginas/`**: Organizada para separar a lógica de acesso: 
   *  `/alunos/`: Contém os componentes do portal do estudante (Aula Ao Vivo, Trilhas, IDE). 
 	*  `/professores/`: Contém os componentes do portal do professor (Dashboards de Progresso, Transcrição). * `/`: Páginas de entrada e navegação inicial. 
-* **`/src/dadosMocados/`**: Contém o arquivo `dicionarioPythonSov.ts`.  Esta é a nossa base de dados atual, onde mapeamos os termos técnicos de Python para a estrutura gramatical SOV da Libras, permitindo que o sistema funcione de forma independente antes da integração final com banco de dados.
+* **`/src/auth/`** e **`/src/supabase/`**: login, cadastro com consentimento (LGPD) e acesso ao banco.
+* **`/src/glossario/`**: glossário Python ↔ Libras em estrutura SOV. A lista oficial vem da tabela `glossario` do Supabase; `glossario.ts` é a cópia embutida usada sem internet.
+* **`/src/turmas/`**: turmas do aluno e do professor (o aluno entra pelo código da turma).
 
 
 ## 🔗 Conectando ao Back-end

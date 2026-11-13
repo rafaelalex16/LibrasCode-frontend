@@ -1,12 +1,14 @@
 import type { Monaco } from "@monaco-editor/react";
 import type { editor, Position } from "monaco-editor";
-import { glossario, type TermoGlossario } from "../glossario/glossario";
+import { buscarTermo, glossario, type TermoGlossario } from "../glossario/glossario";
 
 // Sugestões preditivas e explicações em Libras dentro do editor Monaco
 
-// Termos que podem ser escritos no código (palavras-chave, funções, métodos)
-const termosDeCodigo = glossario.filter((t) => t.ehCodigo && /^[A-Za-z_]\w*$/.test(t.termo));
-const termosPorNome = new Map(termosDeCodigo.map((t) => [t.termo, t]));
+// Termos que podem ser escritos no código (palavras-chave, funções, métodos).
+// Calculado na hora porque o glossário pode ser trocado pela versão do banco.
+function termosDeCodigo() {
+  return glossario.filter((t) => t.ehCodigo && /^[A-Za-z_]\w*$/.test(t.termo));
+}
 
 // Modelos inseridos ao aceitar a sugestão ($1, $2... são os campos que o aluno preenche)
 const MODELOS: Record<string, string> = {
@@ -39,7 +41,8 @@ function ehChamavel(termo: TermoGlossario) {
 }
 
 export function buscarTermoDeCodigo(palavra: string): TermoGlossario | undefined {
-  return termosPorNome.get(palavra);
+  const termo = buscarTermo(palavra);
+  return termo?.ehCodigo ? termo : undefined;
 }
 
 function documentacao(termo: TermoGlossario) {
@@ -59,7 +62,7 @@ export function registrarSugestoesLibras(monaco: Monaco) {
       const intervalo = new monaco.Range(posicao.lineNumber, palavra.startColumn, posicao.lineNumber, palavra.endColumn);
 
       return {
-        suggestions: termosDeCodigo.map((termo) => {
+        suggestions: termosDeCodigo().map((termo) => {
           const snippet = MODELOS[termo.termo];
           const chamavel = !snippet && ehChamavel(termo);
           return {

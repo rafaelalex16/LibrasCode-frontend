@@ -5,9 +5,11 @@ import { buscarTermo, textoParaSinalizar } from "../../glossario/glossario";
 import { abrirAvatar, sinalizar, VELOCIDADES } from "../../vlibras/vlibras";
 
 const STATUS: Record<StatusConexao, { texto: string; cor: string }> = {
+  semTurma: { texto: "Entre em uma turma pelo código no menu", cor: "text-gray-400" },
   conectando: { texto: "Conectando à aula...", cor: "text-yellow-500" },
   conectado: { texto: "Aguardando o professor", cor: "text-gray-400" },
   desconectado: { texto: "Sem conexão com a aula", cor: "text-red-500" },
+  negado: { texto: "Sem permissão para esta turma", cor: "text-red-500" },
 };
 
 export function AulaAoVivo() {

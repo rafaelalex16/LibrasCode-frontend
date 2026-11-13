@@ -1,7 +1,8 @@
 // Glossário técnico bilíngue Python ↔ Libras.
 // As explicações seguem a estrutura SOV (Sujeito-Objeto-Verbo) da Libras.
 // Todos os termos aguardam a validação da comissão técnica (intérpretes Prolibras + especialistas em T.I.).
-// Futuramente estes dados devem vir de um banco de dados.
+// A lista oficial fica na tabela "glossario" do Supabase (carregarGlossario.ts); esta cópia embutida
+// é usada enquanto o banco responde ou sem internet.
 
 export type Categoria =
   | "Sintaxe básica"
@@ -51,7 +52,7 @@ function montar(
   ];
 }
 
-export const glossario: TermoGlossario[] = [
+const glossarioEmbutido: TermoGlossario[] = [
   // --- 1. SINTAXE BÁSICA ---
   ...montar("Sintaxe básica", [
     ["print", "mostrar na tela", "Computador mensagem na tela mostra.", 'print("Olá, mundo!")', ["print", "printe", "função print"]],
@@ -326,9 +327,33 @@ export const glossario: TermoGlossario[] = [
   ]),
 ];
 
-export const categorias = [...new Set(glossario.map((t) => t.categoria))];
+export let glossario = glossarioEmbutido;
+let porTermo = new Map(glossario.map((t) => [t.termo, t]));
+let versao = 0;
+const ouvintes = new Set<() => void>();
 
-const porTermo = new Map(glossario.map((t) => [t.termo, t]));
+// Troca a lista pela versão do banco e avisa as telas que usam o glossário
+export function substituirGlossario(lista: TermoGlossario[]) {
+  glossario = lista;
+  porTermo = new Map(lista.map((t) => [t.termo, t]));
+  versao++;
+  ouvintes.forEach((avisar) => avisar());
+}
+
+export function assinarGlossario(avisar: () => void) {
+  ouvintes.add(avisar);
+  return () => {
+    ouvintes.delete(avisar);
+  };
+}
+
+export function versaoGlossario() {
+  return versao;
+}
+
+export function listarCategorias() {
+  return [...new Set(glossario.map((t) => t.categoria))];
+}
 
 export function buscarTermo(termo: string) {
   return porTermo.get(termo);

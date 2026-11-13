@@ -1,0 +1,18 @@
+{
+  "name": "LibrasCode",
+  "short_name": "LibrasCode",
+  "description": "Plataforma inclusiva para ensino de programação com suporte em Libras.",
+  "lang": "pt-BR",
+  "start_url": "/home",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icone-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icone.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
