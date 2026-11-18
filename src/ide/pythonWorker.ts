@@ -14,7 +14,14 @@ interface Pyodide {
 export interface PedidoExecucao {
   codigo: string;
   entradas: string[];
+  semEco?: boolean; // não mostra o texto do input() nem as respostas (usado na correção da Trilha)
 }
+
+// Troca o input() por um que não escreve a pergunta na saída
+const INPUT_SEM_ECO = `import builtins as _librascode_builtins
+def input(prompt=""):
+    return _librascode_builtins.input()
+`;
 
 export type MensagemWorker =
   | { tipo: "saida"; texto: string }
@@ -48,7 +55,7 @@ const escrever = (buffer: Uint8Array) => {
 };
 
 escopoWorker.onmessage = async (evento) => {
-  const { codigo, entradas } = evento.data;
+  const { codigo, entradas, semEco = false } = evento.data;
 
   let pyodide: Pyodide;
   try {
@@ -66,7 +73,7 @@ escopoWorker.onmessage = async (evento) => {
   pyodide.setStdin({
     stdin: () => {
       const resposta = fila.shift();
-      if (resposta !== undefined) enviar({ tipo: "saida", texto: `${resposta}\n` });
+      if (resposta !== undefined && !semEco) enviar({ tipo: "saida", texto: `${resposta}\n` });
       return resposta;
     },
   });
@@ -74,6 +81,7 @@ escopoWorker.onmessage = async (evento) => {
   enviar({ tipo: "iniciou" });
   try {
     const escopo = pyodide.toPy({ __name__: "__main__" });
+    if (semEco) await pyodide.runPythonAsync(INPUT_SEM_ECO, { globals: escopo, filename: "<preparo>" });
     await pyodide.runPythonAsync(codigo, { globals: escopo, filename: "<aluno>" });
     enviar({ tipo: "fim" });
   } catch (erro) {

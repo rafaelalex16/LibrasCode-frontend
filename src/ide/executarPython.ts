@@ -17,7 +17,7 @@ interface Eventos {
 // O worker é reaproveitado entre execuções para não baixar o Python de novo
 let worker: Worker | null = null;
 
-export function executarPython(codigo: string, entradas: string[], eventos: Eventos) {
+export function executarPython(codigo: string, entradas: string[], eventos: Eventos, semEco = false) {
   worker ??= new Worker(new URL("./pythonWorker.ts", import.meta.url), { type: "module" });
   const atual = worker;
 
@@ -55,7 +55,7 @@ export function executarPython(codigo: string, entradas: string[], eventos: Even
     terminar({ falhaCarregamento: evento.message || "erro desconhecido" });
   };
 
-  atual.postMessage({ codigo, entradas } satisfies PedidoExecucao);
+  atual.postMessage({ codigo, entradas, semEco } satisfies PedidoExecucao);
 
   return {
     resultado,

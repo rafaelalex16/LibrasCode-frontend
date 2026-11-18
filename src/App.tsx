@@ -13,6 +13,7 @@ import { LOGIN_ATIVO } from "./config";
 import { RotaProtegida } from "./auth/RotaProtegida";
 import { IDE } from "./paginas/alunos/IDE";
 import { Trilha } from "./paginas/alunos/Trilha";
+import { ModuloTrilha } from "./paginas/alunos/ModuloTrilha";
 import { AulaAoVivo } from "./paginas/alunos/AulaAoVivo";
 import { PortalProfessor } from "./paginas/professor/PortalProfessor";
 import { GravarAulaProfessor } from "./paginas/professor/GravarAulaProfessor";
@@ -40,6 +41,7 @@ function App() {
             <Route path="ide" element={<IDE />} />
             <Route path="aula" element={<AulaAoVivo />} />
             <Route path="trilha" element={<Trilha />} />
+            <Route path="trilha/:modulo" element={<ModuloTrilha />} />
             <Route path="glossario" element={<Dicionario />} />
             {LOGIN_ATIVO && <Route path="conta" element={<MinhaConta />} />}
           </Route>
