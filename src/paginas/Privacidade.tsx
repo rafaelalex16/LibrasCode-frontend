@@ -9,15 +9,17 @@ const SECOES: [string, string[]][] = [
     "Se você é aluno ou professor e, para menores de 18 anos, o nome do responsável.",
     "As turmas que você participa.",
     "O texto transcrito da fala do professor durante a aula ao vivo. O áudio não é gravado nem guardado.",
+    "Para alunos: o andamento na Trilha (itens concluídos e número de tentativas), os tipos de erro de programação e os termos consultados em Libras. O código escrito não é enviado.",
   ]],
   ["Para que usamos", [
     "Permitir o acesso à plataforma e às turmas.",
     "Mostrar a transcrição e a sinalização em Libras da aula ao vivo e guardar o histórico para revisão.",
+    "Mostrar ao professor o progresso, as dúvidas e os erros mais comuns da turma, para ajustar as aulas.",
     "Não vendemos nem compartilhamos seus dados com terceiros para publicidade.",
   ]],
   ["Quem pode ver", [
     "Você vê apenas os seus dados e os das turmas que participa.",
-    "O professor vê o nome dos alunos matriculados nas turmas dele.",
+    "O professor vê o nome, o andamento na Trilha, os erros e os termos consultados dos alunos matriculados nas turmas dele.",
     "O código que você escreve na IDE fica só no seu navegador.",
   ]],
   ["Crianças e adolescentes", [

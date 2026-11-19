@@ -1,6 +1,5 @@
 import { Hand } from "lucide-react";
-import { textoParaSinalizar } from "../glossario/glossario";
-import { sinalizar } from "../vlibras/vlibras";
+import { sinalizarTermo } from "../aprendizagem/eventos";
 import { useAulaAoVivo } from "./contextoAula";
 
 // Termos técnicos citados pelo professor na aula ao vivo
@@ -27,7 +26,7 @@ export function SinaisDetectados() {
       {termosDetectados.map(({ termo, vezes }) => (
         <button
           key={termo.termo}
-          onClick={() => sinalizar(textoParaSinalizar(termo))}
+          onClick={() => sinalizarTermo(termo, "aula")}
           title="Ver sinal em Libras"
           className="flex flex-row mb-2 gap-2 justify-between items-center text-left border border-gray-150 rounded-lg p-2 hover:bg-blue-50 transition"
         >

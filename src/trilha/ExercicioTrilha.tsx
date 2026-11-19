@@ -7,6 +7,7 @@ import { registrarSugestoesLibras } from "../ide/sugestoesLibras";
 import { sinalizar } from "../vlibras/vlibras";
 import type { Exercicio, Modulo } from "./conteudo";
 import { avaliar, type Avaliacao, type ResultadoCaso } from "./corrigir";
+import { registrarEvento } from "../aprendizagem/eventos";
 import { registrarTentativa, useProgresso } from "./progresso";
 
 const aoMontarEditor: OnMount = (_editor, monaco) => registrarSugestoesLibras(monaco);
@@ -45,10 +46,18 @@ export function ExercicioTrilha({ modulo, exercicio }: { modulo: Modulo; exercic
 
     const nova = avaliar(exercicio, codigo, resultados);
     const casoMostrado = resultados[nova.casoComFalha ?? 0];
+    const explicado = casoMostrado?.erro ? explicarErro(casoMostrado.erro) : null;
     setSaida(casoMostrado?.saida ?? "");
-    if (casoMostrado?.erro) setErro(explicarErro(casoMostrado.erro));
+    setErro(explicado);
     setAvaliacao(nova);
-    registrarTentativa(modulo.id, exercicio.id, nova.aprovado);
+
+    // Tipo do erro para o painel do professor (erros mais comuns da turma)
+    const erroTipo = nova.aprovado
+      ? null
+      : explicado?.tipo ?? (casoMostrado?.tempoEsgotado ? "TempoEsgotado" : nova.casoComFalha !== undefined ? "SaidaDiferente" : "FaltouComando");
+    if (registrarTentativa(modulo.id, exercicio.id, nova.aprovado)) {
+      registrarEvento({ tipo: "tentativa", modulo: modulo.id, item: exercicio.id, aprovado: nova.aprovado, erro_tipo: erroTipo });
+    }
     setExecutando(false);
   };
 

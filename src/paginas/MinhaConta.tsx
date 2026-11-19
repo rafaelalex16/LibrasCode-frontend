@@ -26,9 +26,10 @@ export function MinhaConta() {
   };
 
   const baixarDados = async () => {
-    const [turmasProfessor, matriculas] = await Promise.all([
+    const [turmasProfessor, matriculas, eventos] = await Promise.all([
       supabase.from("turmas").select("nome, codigo, criado_em").eq("professor_id", perfil.id),
       supabase.from("matriculas").select("criado_em, turmas(nome)").eq("aluno_id", perfil.id),
+      supabase.from("eventos_aprendizagem").select("tipo, modulo, item, termo, erro_tipo, aprovado, criado_em").eq("aluno_id", perfil.id),
     ]);
     const dados = {
       exportado_em: new Date().toISOString(),
@@ -36,6 +37,7 @@ export function MinhaConta() {
       perfil,
       turmas_que_ensina: turmasProfessor.data ?? [],
       matriculas: matriculas.data ?? [],
+      eventos_de_aprendizagem: eventos.data ?? [],
     };
     const link = document.createElement("a");
     link.href = URL.createObjectURL(new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" }));

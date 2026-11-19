@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react";
-import { modulos, type Modulo } from "./conteudo";
+import { buscarModulo, modulos, type Modulo } from "./conteudo";
 
 // Progresso da Trilha guardado neste navegador.
 // Quando o login for ligado, pode ir para o banco e para o "Progresso da Turma" do professor.
@@ -52,22 +52,56 @@ function progressoDoModulo(moduloId: string): ProgressoModulo {
   };
 }
 
+// As funções abaixo devolvem true quando algo novo aconteceu (quem chama registra o evento no banco)
+
+// true quando o último passo do tutorial é visto pela primeira vez
 export function marcarPasso(moduloId: string, indice: number) {
   const modulo = progressoDoModulo(moduloId);
-  if (indice + 1 <= modulo.passosVistos) return;
+  if (indice + 1 <= modulo.passosVistos) return false;
   salvar({ ...lerProgresso(), [moduloId]: { ...modulo, passosVistos: indice + 1 } });
+  return indice + 1 === buscarModulo(moduloId)?.passos.length;
 }
 
+// true quando a tentativa conta (o exercício ainda não estava concluído)
 export function registrarTentativa(moduloId: string, exercicioId: string, aprovado: boolean) {
   const modulo = progressoDoModulo(moduloId);
   const exercicio = modulo.exercicios[exercicioId] ?? { concluido: false, tentativas: 0 };
   // Depois de concluído, novas execuções não mudam a contagem
-  const novo = exercicio.concluido ? exercicio : { concluido: aprovado, tentativas: exercicio.tentativas + 1 };
+  if (exercicio.concluido) return false;
+  const novo = { concluido: aprovado, tentativas: exercicio.tentativas + 1 };
   salvar({ ...lerProgresso(), [moduloId]: { ...modulo, exercicios: { ...modulo.exercicios, [exercicioId]: novo } } });
+  return true;
 }
 
+// true na primeira vez que a pergunta é respondida certo
 export function marcarPergunta(moduloId: string) {
-  salvar({ ...lerProgresso(), [moduloId]: { ...progressoDoModulo(moduloId), pergunta: true } });
+  const modulo = progressoDoModulo(moduloId);
+  if (modulo.pergunta) return false;
+  salvar({ ...lerProgresso(), [moduloId]: { ...modulo, pergunta: true } });
+  return true;
+}
+
+// Junta o progresso vindo do banco com o deste navegador, mantendo o maior avanço
+export function mesclarProgresso(remoto: Record<string, ProgressoModulo>) {
+  const local = lerProgresso();
+  const juntado = { ...local };
+  for (const [moduloId, deFora] of Object.entries(remoto)) {
+    const daqui = progressoDoModulo(moduloId);
+    const exercicios = { ...daqui.exercicios };
+    for (const [exercicioId, remotoEx] of Object.entries(deFora.exercicios)) {
+      const localEx = exercicios[exercicioId] ?? { concluido: false, tentativas: 0 };
+      exercicios[exercicioId] = {
+        concluido: localEx.concluido || remotoEx.concluido,
+        tentativas: Math.max(localEx.tentativas, remotoEx.tentativas),
+      };
+    }
+    juntado[moduloId] = {
+      passosVistos: Math.max(daqui.passosVistos, deFora.passosVistos),
+      exercicios,
+      pergunta: daqui.pergunta || deFora.pergunta,
+    };
+  }
+  salvar(juntado);
 }
 
 // Itens do módulo: tutorial (todos os passos vistos) + exercícios + pergunta

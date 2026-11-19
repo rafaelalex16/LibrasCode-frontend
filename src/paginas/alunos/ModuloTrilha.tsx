@@ -1,7 +1,8 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, Circle, Hand, Lock, PartyPopper, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { buscarTermo, textoParaSinalizar } from "../../glossario/glossario";
+import { registrarEvento, sinalizarTermo } from "../../aprendizagem/eventos";
+import { buscarTermo } from "../../glossario/glossario";
 import { buscarModulo, modulos, type Modulo } from "../../trilha/conteudo";
 import { ExercicioTrilha } from "../../trilha/ExercicioTrilha";
 import {
@@ -23,7 +24,7 @@ function Tutorial({ modulo, aoTerminar }: { modulo: Modulo; aoTerminar: () => vo
   const ultimo = indice === modulo.passos.length - 1;
 
   useEffect(() => {
-    marcarPasso(modulo.id, indice);
+    if (marcarPasso(modulo.id, indice)) registrarEvento({ tipo: "item_concluido", modulo: modulo.id, item: "tutorial" });
   }, [modulo.id, indice]);
 
   return (
@@ -52,7 +53,7 @@ function Tutorial({ modulo, aoTerminar }: { modulo: Modulo; aoTerminar: () => vo
           return (
             <button
               key={nome}
-              onClick={() => sinalizar(textoParaSinalizar(termo))}
+              onClick={() => sinalizarTermo(termo, "trilha")}
               title={termo.explicacaoSOV}
               className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-semibold text-purple-700 hover:bg-purple-200"
             >
@@ -91,7 +92,9 @@ function Pergunta({ modulo, respondida }: { modulo: Modulo; respondida: boolean 
 
   const responder = (opcao: number) => {
     setEscolha(opcao);
-    if (opcao === pergunta.correta) marcarPergunta(modulo.id);
+    if (opcao === pergunta.correta && marcarPergunta(modulo.id)) {
+      registrarEvento({ tipo: "item_concluido", modulo: modulo.id, item: "pergunta" });
+    }
   };
 
   return (

@@ -22,7 +22,7 @@ export interface Turma {
 }
 
 // Versão da política de privacidade aceita no cadastro
-export const VERSAO_TERMOS = "2026-11";
+export const VERSAO_TERMOS = "2026-11-19";
 
 export function portalDoPapel(papel: Papel) {
   return papel === "professor" ? "/professor" : "/aluno";

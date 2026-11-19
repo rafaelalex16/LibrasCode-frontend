@@ -1,7 +1,8 @@
 import { BookOpen, DotIcon, Hand, History, Pause, Play, Trash2, Volume2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAulaAoVivo, type StatusConexao } from "../../aulaAoVivo/contextoAula";
-import { buscarTermo, textoParaSinalizar } from "../../glossario/glossario";
+import { sinalizarTermo } from "../../aprendizagem/eventos";
+import { buscarTermo } from "../../glossario/glossario";
 import { abrirAvatar, sinalizar, VELOCIDADES } from "../../vlibras/vlibras";
 
 const STATUS: Record<StatusConexao, { texto: string; cor: string }> = {
@@ -176,7 +177,7 @@ export function AulaAoVivo() {
                     return (
                       <button
                         key={nome}
-                        onClick={() => sinalizar(textoParaSinalizar(termo))}
+                        onClick={() => sinalizarTermo(termo, "aula")}
                         title={termo.explicacaoSOV}
                         className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-semibold text-purple-700 hover:bg-purple-200"
                       >

@@ -1,5 +1,7 @@
 import { Book, Code2, LogOut, Route, UserRound, Video } from "lucide-react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { sincronizarTrilha } from "../../aprendizagem/sincronizarTrilha";
 import { useAuth } from "../../auth/contextoAuth";
 import { LOGIN_ATIVO, SALA_SEM_LOGIN } from "../../config";
 import { AulaAoVivoProvider } from "../../aulaAoVivo/AulaAoVivoProvider";
@@ -18,6 +20,11 @@ export default function PortalAluno() {
   // Com o login desligado todos ficam na mesma sala
   const turmaId = LOGIN_ATIVO ? turmaAtual?.id ?? null : SALA_SEM_LOGIN;
 
+  // Com login, a Trilha continua de onde o aluno parou em qualquer computador
+  useEffect(() => {
+    if (LOGIN_ATIVO && perfil?.papel === "aluno") void sincronizarTrilha();
+  }, [perfil]);
+
   const sairDaConta = async () => {
     if (LOGIN_ATIVO) await sair();
     navigate("/home", { replace: true });
@@ -26,7 +33,7 @@ export default function PortalAluno() {
   return (
     // O provider mantém a aula ao vivo da turma conectada em todas as telas do aluno
     <AulaAoVivoProvider key={turmaId ?? "sem-turma"} turmaId={turmaId}>
-    <div className="bg-slate-100 flex">
+    <div className="bg-slate-100 flex h-screen overflow-hidden">
       <aside className="w-64 h-screen  bg-white border border-l  border-gray-200 flex flex-col justify-between">
         {/* Menu de Navegação Estudante */}
         <div className="p-3 space-y-4 flex-col items-start ">

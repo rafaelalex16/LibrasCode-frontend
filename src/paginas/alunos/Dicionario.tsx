@@ -2,8 +2,8 @@ import { BookOpen, Hand, Search, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { normalizar } from "../../glossario/detectarTermos";
 import { useGlossario } from "../../glossario/carregarGlossario";
-import { textoParaSinalizar, type Categoria } from "../../glossario/glossario";
-import { sinalizar } from "../../vlibras/vlibras";
+import { sinalizarTermo } from "../../aprendizagem/eventos";
+import type { Categoria } from "../../glossario/glossario";
 
 // Os termos vêm da tabela "glossario" do Supabase (com a cópia embutida como reserva).
 
@@ -87,7 +87,7 @@ export function Dicionario() {
               </div>
 
               <button
-                onClick={() => sinalizar(textoParaSinalizar(termo))}
+                onClick={() => sinalizarTermo(termo, "glossario")}
                 className="shrink-0 flex items-center gap-1 rounded-md bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600 hover:bg-blue-200"
               >
                 <Hand size={12} />

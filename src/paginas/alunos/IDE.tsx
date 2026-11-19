@@ -1,7 +1,8 @@
 import { Editor, type Monaco, type OnMount } from "@monaco-editor/react";
 import { AlertTriangle, FileText, Hand, Keyboard, Loader2, Play, Square, Terminal } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { buscarTermo, textoParaSinalizar, type TermoGlossario } from "../../glossario/glossario";
+import { registrarEvento, sinalizarTermo } from "../../aprendizagem/eventos";
+import { buscarTermo, type TermoGlossario } from "../../glossario/glossario";
 import { explicarErro, textoDoErroParaSinalizar, type ErroExplicado } from "../../ide/errosPython";
 import { executarPython, type ResultadoExecucao } from "../../ide/executarPython";
 import { resumirCodigo } from "../../ide/resumoCodigo";
@@ -71,7 +72,7 @@ export function IDE() {
     if (!sinalizacaoAutomatica || !termoAtual || ultimoSinalizado.current === termoAtual.termo) return;
     const espera = window.setTimeout(() => {
       ultimoSinalizado.current = termoAtual.termo;
-      sinalizar(textoParaSinalizar(termoAtual));
+      sinalizarTermo(termoAtual, "ide");
     }, 1000);
     return () => window.clearTimeout(espera);
   }, [termoAtual, sinalizacaoAutomatica]);
@@ -123,6 +124,7 @@ export function IDE() {
     setErro(explicado);
     setAba("erro");
     marcarErro(explicado);
+    registrarEvento({ tipo: "erro_ide", erro_tipo: explicado.tipo });
     if (sinalizacaoAutomatica) sinalizar(textoDoErroParaSinalizar(explicado));
   };
 
@@ -249,7 +251,7 @@ export function IDE() {
               <span className="text-gray-700 font-medium">{termoAtual.explicacaoSOV}</span>
             </div>
             <button
-              onClick={() => sinalizar(textoParaSinalizar(termoAtual))}
+              onClick={() => sinalizarTermo(termoAtual, "ide")}
               className="shrink-0 flex items-center gap-1 rounded-md bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600 hover:bg-blue-200"
             >
               <Hand size={12} />

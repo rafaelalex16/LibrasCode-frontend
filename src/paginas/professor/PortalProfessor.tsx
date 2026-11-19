@@ -15,7 +15,7 @@ export function PortalProfessor() {
   };
 
   return (
-    <div className="bg-slate-100 flex">
+    <div className="bg-slate-100 flex h-screen overflow-hidden">
       <aside className="w-64 h-screen bg-white border border-l border-gray-200 flex flex-col justify-between">
         {/* Menu de Navegação Estudante */}
         <div className="p-3 space-y-4 flex-col items-start ">
